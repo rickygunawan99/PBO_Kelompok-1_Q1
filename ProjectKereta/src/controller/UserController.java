@@ -13,13 +13,12 @@ public class UserController extends AllObjectModel{
     }
 
 
-    public int register(String nama, String no_ktp, String alamat,
-                         String no_hp, String pass, String tgl_lahir){
+    public int register(UserEntity dataUser){
 
-        if(user.cekRegister(no_hp) == -1){
-            penduduk.register(nama,no_ktp,alamat);
-            int id_penduduk = penduduk.getPendudukId(no_ktp);
-            user.register(no_hp, pass, tgl_lahir, id_penduduk);
+        if(user.cekRegister(dataUser.getNo_hp()) == -1){
+            penduduk.register(dataUser.getNama(), dataUser.getNoKtp(), dataUser.getAlamat());
+            int id_penduduk = penduduk.getPendudukId(dataUser.getNoKtp());
+            user.register(dataUser.getNo_hp(), dataUser.getPassword(), dataUser.getTgl_lahir(), id_penduduk);
             return 1;
         }else{
             System.out.println("No hp sudah didaftarkan");

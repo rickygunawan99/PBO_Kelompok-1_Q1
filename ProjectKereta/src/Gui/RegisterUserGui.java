@@ -1,5 +1,7 @@
 package Gui;
 
+import entities.UserEntity;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -141,8 +143,8 @@ public class RegisterUserGui extends JFrame{
 
                 if(nama.length()!=0 && no_ktp.length()!=0 && alamat.length()!=0 &&
                 no_hp.length()!=0&&tgl_lahir.length()!=0&&pass.length()!=0){
-                    int cek = objController.userController.register(nama,no_ktp,
-                            alamat,no_hp,pass,tgl_lahir);
+                    UserEntity dataUser = new UserEntity(0,nama, no_ktp, alamat, no_hp, pass, tgl_lahir);
+                    int cek = objController.userController.register(dataUser);
                     if(cek!=-1){
                         JOptionPane.showMessageDialog(null,"Register berhasil," +
                                 " Silahkan login kembali");
